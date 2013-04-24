@@ -1,0 +1,45 @@
+<div >
+  <div class="container">
+    <div>
+      <div class="six columns">
+       <div class="medium secondary btn">
+        <a href="" ng-click="submit()" >
+         Submit!!</a>
+       </div>
+       <p>
+         <img ng-src="{{map}}"/></p>
+         <h6>Latitude {{position.coords.latitude}}</h6>
+         <h6>Longitude {{position.coords.longitude}}</h6>
+         <h6>Altitude {{position.coords.altitude}}</h6>
+         <div class="medium primary btn">
+           <a href="" ng-click="refreshLocation()">Refresh Location</a>
+         </div>
+       </div>
+     </div>
+     <div class="row" >
+       <div class="twelve colgrid">
+         <div class="row">
+           <div class="six columns">
+             <div class="medium secondary btn">
+              <a href="" ng-click="takepic()">Take a Picture!</a>
+            </div>
+            <img ng-src="{{photo}}"/>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+
+
+
+
+
+
+
+
