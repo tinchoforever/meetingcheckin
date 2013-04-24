@@ -41,12 +41,13 @@ var app = {
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
-        var imageelement = parentElement.querySelector('.showimage');
+        var imageelement = document.getElementById('takephoto');
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
 
-        document.addEventListener('touchstart', function(event) {
+        imageelement.addEventListener('touchstart', function(event) {
+            event.preventDefault();
             app.takephoto();
         }, false);
     },
