@@ -16,7 +16,7 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-var app = {
+ var app = {
     // Application Constructor
     initialize: function() {
         this.bindEvents();
@@ -41,23 +41,25 @@ var app = {
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
 
-        var imageelement = document.getElementById('takephoto');
 
         listeningElement.setAttribute('style', 'display:none;');
         receivedElement.setAttribute('style', 'display:block;');
-
+        var imageelement = document.getElementById('takephoto');
         imageelement.addEventListener('touchstart', function(event) {
             event.preventDefault();
             app.takephoto();
         }, false);
     },
     takephoto: function() {
-         navigator.camera.getPicture(function (imageURI) {
-            var picture = document.getElementById("mypicture");
-            picture.setAttribute("src", imageURI);
-            console.log(imageURI);
-        } );
+     navigator.camera.getPicture(function (imageURI) {
+       var picture = document.getElementById("mypicture");
+       picture.setAttribute("src", imageURI);
+       console.log(imageURI);
+       var deviceready = document.getElementById("deviceready");
+       deviceready.setAttribute('style', 'display:none;');
+
+   } );
 
 
-    }
+ }
 };
