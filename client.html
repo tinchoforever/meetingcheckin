@@ -1,0 +1,110 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <title>See what's going on in the meeting</title>
+
+  <script type='text/javascript' src='//code.jquery.com/jquery-1.9.1.js'></script>
+  <link rel="stylesheet" type="text/css" href="/css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="/css/result-light.css">
+  <link rel="stylesheet" type="text/css" href="http://twitter.github.com/bootstrap/assets/css/bootstrap.css">
+  <script type='text/javascript' src="http://olado.github.com/doT/doT.min.js"></script>
+  <script type='text/javascript' src="http://gridster.net/dist/jquery.gridster.js"></script>
+  <script type='text/javascript' src="http://twitter.github.com/bootstrap/assets/js/bootstrap-tab.js"></script>
+  <script type='text/javascript' src="https://raw.github.com/timrwood/moment/1.7.2/min/moment.min.js"></script>
+  <script type='text/javascript' src="http://twitter.github.com/bootstrap/assets/js/bootstrap-modal.js"></script>
+  <script type='text/javascript' src="http://seed.web.rga.com:3000/sockets.js"></script>
+
+
+  <style type='text/css'>
+  img { max-width:320px;}
+  .input-large {
+    width: 80%;
+  }
+  .card.span3 p {
+    font-size: 10.5pt;
+  }
+  .ready {
+    padding:0 60px 60px 60px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    font-weight: 200;
+    max-width:80%;
+    line-height: 30px;
+  }
+  .card {
+    background-color:#CCC;
+    padding:10px;
+    width:250px;
+    height:250px;
+    position:relative;
+    margin:10px 10px 12px 35px;
+  }
+  .sender {
+    vertical-align: bottom;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    margin-bottom: 10px;
+  }
+  .card.span3 img {
+    max-width:250px;
+    max-height:250px;
+    vertical-align: middle;
+  }
+  .number {
+    text-align:center;
+  }
+  .description {
+    text-align:center;
+  }
+  </style>
+
+</head>
+<body>
+  <div class="hero-unit">
+   <h1> Who's in this meeting?</h1>
+ </div>
+
+ <ul class="checkins"></ul>
+
+ <script type="text/dot" id="checkin-template">
+ <li>
+ <img src="{{=it.photo}}"/>
+ </li>
+ <img src="http://maps.google.com/maps/api/staticmap?sensor=false&center={{=it.latitude}},               {{=it.longitude}}&zoom=15&size=300x200&markers=color:blue|label:S|{{=it.latitude}},{{=it.longitude}}"/>
+ </script>
+
+
+
+
+
+<script type='text/javascript'>
+
+
+var checkintemplate = doT.template($('#checkin-template').html());
+
+var client = new Faye.Client('yourserviceURL/sockets');
+var subscription = client.subscribe('/data', function(PostObject) {
+  console.log(PostObject)
+  $('.checkins').prepend(checkintemplate(PostObject));
+});
+
+var obj = {
+  photo: "http://4.bp.blogspot.com/-h5pH5tsgvGk/UWHCnMjp4nI/AAAAAAAAAPU/pb3ALlFfpWA/s1600/preview4.png",
+  latitude: "-50",
+  longitude: "-65"
+}
+
+$.post('yourserviceURL', obj);
+
+
+</script>
+
+
+</body>
+
+
+</html>
+

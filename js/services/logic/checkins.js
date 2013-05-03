@@ -33,12 +33,12 @@ angular.module('initApp.services', ['LocalStorageModule', 'ngResource'])
      console.log(this.photo);
      var data = {
       photo: this.photo,
-      latitude: this.location.longitude,
-      longitude: this.location.latitude,
+      latitude: this.location.latitude,
+      longitude: this.location.longitude,
     };
 
       //Submit to server OF COURSE!!
-      var service ="http://seed.web.rga.com:3000/";
+      var service ="yourserviceURL";
       $http.post(service, data).success(function(data) {
        callback();
      });

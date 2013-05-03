@@ -9,7 +9,7 @@ initApp.controller('deviceController', function ($scope, geolocation, camera, ch
    geolocation.getCurrentPosition(function (position) {
      $scope.position = position;
      $scope.map = "http://maps.google.com/maps/api/staticmap?sensor=false&center=" + position.coords.latitude + "," +
-     position.coords.longitude + "&zoom=20&size=300x200&markers=color:blue|label:S|" +
+     position.coords.longitude + "&zoom=10&size=300x200&markers=color:blue|label:S|" +
      position.coords.latitude + ',' + position.coords.longitude;
      checkins.setLocation(position.coords);
    });
